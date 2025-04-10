@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прогресс-бар</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .progress-container {
+            width: 300px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        .progress-bar {
+            height: 20px;
+            width: 0;
+            background-color: #76c7c0;
+            border-radius: 10px;
+            transition: width 0.1s;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #76c7c0;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s;
+        }
+        .button:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+        .button:active {
+            box-shadow: none; /* Убираем тень при нажатии */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <button class="button" id="holdButton">Нажмите и удерживайте</button>
+
+    <script>
+        const progressBar = document.getElementById('progressBar');
+        const holdButton = document.getElementById('holdButton');
+        let progress = 0;
+        let interval;
+
+        holdButton.addEventListener('mousedown', () => {
+            holdButton.style.boxShadow = 'none'; // Убираем тень
+            progress = 0; // Сбрасываем прогресс
+            progressBar.style.width = '0%'; // Сбрасываем ширину прогресс-бара
+
+            interval = setInterval(() => {
+                if (progress < 100) {
+                    progress += 2; // Увеличиваем прогресс
+                    progressBar.style.width = progress + '%';
+                }
+            }, 100); // Каждые 100 мс
+        });
+
+        holdButton.addEventListener('mouseup', () => {
+            clearInterval(interval); // Останавливаем прогресс
+            holdButton.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)'; // Восстанавливаем тень
+        });
+
+        holdButton.addEventListener('mouseleave', () => {
+            clearInterval(interval); // Останавливаем прогресс, если мышь покинула кнопку
+            holdButton.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)'; // Восстанавливаем тень
+        });
+    </script>
+
+</body>
+</html>

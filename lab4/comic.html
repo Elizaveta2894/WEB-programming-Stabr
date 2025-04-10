@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стабровская Елизавета Евгеньевна. Лабораторная работа 4</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
+    <link rel= 'icon' href="../favicon-16x16.png"> 
+    <link rel= 'icon' href="../favicon-32x32.png">
+    <style>
+        body {
+            margin: 0; 
+            font-family: sans-serif; 
+        }
+
+        header {
+            text-align: center;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .image-container {
+            position: relative;
+        }
+        .cloud1 {
+            width: 40px;
+            height: 30px;
+            left: 220px;
+            top: 140px;
+            text-align: center;
+            background-color: white;
+            border: 2px solid darkgreen;
+            margin: 15px;
+            position: absolute;
+            border-radius: 50%;
+            line-height: 1;
+            box-shadow: 0 4px 8px rgba(9, 40, 193, 0.892);
+            visibility: hidden;
+        }
+        .cloud2 {
+            width: 60px;
+            height: 50px;
+            left: 260px;
+            top: 110px;
+            text-align: center;
+            background-color: white;
+            border: 2px solid darkgreen;
+            margin: 15px;
+            position: absolute;
+            border-radius: 50%;
+            line-height: 1;
+            box-shadow: 0 4px 8px rgba(9, 40, 193, 0.892);
+            visibility: hidden;
+        }
+        .cloud3 {
+            width: 90px;
+            height: 80px;
+            left: 310px;
+            top: 60px;
+            text-align: center;
+            background-color: white;
+            border: 2px solid darkgreen;
+            margin: 15px;
+            position: absolute;
+            border-radius: 50%;
+            line-height: 1;
+            box-shadow: 0 4px 8px rgba(9, 40, 193, 0.892);
+            visibility: hidden;
+        }
+        .cloud4 {
+            width: 140px;
+            height: 90px;
+            left: 380px;
+            top: 4px;
+            text-align: center;
+            background-color: white;
+            border: 2px solid darkgreen;
+            margin: 15px;
+            position: absolute;
+            border-radius: 50%;
+            line-height: 1;
+            box-shadow: 0 4px 8px rgba(9, 40, 193, 0.892);
+            visibility: hidden;
+        }
+        .image-container:hover .cloud1 {
+            visibility: visible;
+            z-index: 1;
+        }
+        .image-container:hover .cloud2 {
+            visibility: visible;
+            z-index: 1;
+            transition-delay: 0.3s  
+        }
+        .image-container:hover .cloud3 {
+            visibility: visible;
+            z-index: 1;
+            transition-delay: 0.6s 
+        }
+        .image-container:hover .cloud4 {
+            visibility: visible;
+            z-index: 1; 
+            transition-delay: 0.9s 
+        }
+        .cloud1,.cloud2,.cloud3, .cloud4 {
+           transition: visibility 0s, opacity 0.3s linear;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная 4
+    </header>
+
+    <main>
+        <div class="image-container">
+            <img src="dly_comic1.jpg" height="100%" width="50%" align="middle" alt="Comic" >
+            <div class="cloud1"></div>
+            <div class="cloud2"></div>
+            <div class="cloud3"></div>
+            <div class="cloud4">Ты пикмэ</div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025
+    </footer>
+    
+</body>
+</html>
