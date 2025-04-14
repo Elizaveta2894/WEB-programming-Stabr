@@ -1,0 +1,58 @@
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>Tag Cloud</title>
+    <style>
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            padding: 5px 10px;
+            transition: transform 0.3s,
+                background-color 0.3s,
+                box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .tag1:hover {
+            transform: scale(1.2);
+            color: rgb(102, 142, 24);
+        }
+
+        .tag1 {
+            font-size: 23px;
+        }
+
+        .tag2 {
+            padding-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h3>Create a tag cloud with CSS</h3>
+        <div class="tag-cloud">
+            <span class="tag tag1">HTML</span>
+            <span class="tag tag2">stands for</span>
+            <span class="tag tag1">
+              HyperText Markup Language
+              </span>
+            <span class="tag tag2">
+              It is the standard language used to create
+              and design web pages on the internet.
+            </span>
+        </div>
+    </div>
+</body>
+
+</html>

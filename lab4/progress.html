@@ -3,87 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Прогресс-бар</title>
+    <title>Стабровская. Прогресс-бар</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
+    <link rel= 'icon' href="../favicon-16x16.png"> 
+    <link rel= 'icon' href="../favicon-32x32.png">
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f8ff;
-            margin: 0;
-            font-family: Arial, sans-serif;
+          margin: 0;
+          height: 100vh;
+          background-color: #e6e4d8;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
+        header {
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding: 10px;
+          background-color: #8c6d51;
+          color: #333;
+          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+          font-size: 19px;
+          font-weight: 600;
+          z-index: 1; 
+          text-align: left; 
+        }
+
+    
         .progress-container {
-            width: 300px;
-            background-color: #e0e0e0;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            position: relative;
+          border: 1px solid #22333b;
+          padding: 30px;
+          background-color: #9e9b88;
+          text-align: center;
+          width: 400px;
         }
-        .progress-bar {
-            height: 20px;
-            width: 0;
-            background-color: #76c7c0;
-            border-radius: 10px;
-            transition: width 0.1s;
+    
+        .progress-title {
+          font-size: 24px;
+          font-weight: bold;
+          color: #22333b;
+          margin-bottom: 20px;
+          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+          font-size: 27px;
         }
-        .button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #76c7c0;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: box-shadow 0.3s;
+    
+        .progress-bar-bg {
+          width: 100%;
+          height: 20px;
+          border: 1px solid #22333b;
+          background-color: white;
+          position: relative;
+          margin-bottom: 20px;
         }
-        .button:hover {
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    
+        .progress-bar-fill {
+          background-color: #8c6d51;
+          height: 100%;
+          width: 0%;
+          transition: width 0.05s linear;
         }
-        .button:active {
-            box-shadow: none; /* Убираем тень при нажатии */
+    
+        .progress-button {
+          padding: 10px 20px;
+          background-color: #8c6d51;
+          color: white;
+          border: none;
+          border-radius: 12px;
+          font-size: 18px;
+          cursor: pointer;
+          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+          box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+          transition: box-shadow 0.2s ease;
         }
-    </style>
-</head>
-<body>
-
+    
+        .progress-button:hover {
+          box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+        }
+    
+        .progress-button:active {
+          box-shadow: none;
+        }
+      </style>
+    </head>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная 4
+        </header>
+    
     <div class="progress-container">
-        <div class="progress-bar" id="progressBar"></div>
+      <div class="progress-title">Степень прогресса</div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="bar"></div>
+      </div>
+      <button class="progress-button" id="progressBtn">Нажмите и удерживайте</button>
     </div>
-    <button class="button" id="holdButton">Нажмите и удерживайте</button>
-
+    
     <script>
-        const progressBar = document.getElementById('progressBar');
-        const holdButton = document.getElementById('holdButton');
-        let progress = 0;
-        let interval;
-
-        holdButton.addEventListener('mousedown', () => {
-            holdButton.style.boxShadow = 'none'; // Убираем тень
-            progress = 0; // Сбрасываем прогресс
-            progressBar.style.width = '0%'; // Сбрасываем ширину прогресс-бара
-
-            interval = setInterval(() => {
-                if (progress < 100) {
-                    progress += 2; // Увеличиваем прогресс
-                    progressBar.style.width = progress + '%';
-                }
-            }, 100); // Каждые 100 мс
-        });
-
-        holdButton.addEventListener('mouseup', () => {
-            clearInterval(interval); // Останавливаем прогресс
-            holdButton.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)'; // Восстанавливаем тень
-        });
-
-        holdButton.addEventListener('mouseleave', () => {
-            clearInterval(interval); // Останавливаем прогресс, если мышь покинула кнопку
-            holdButton.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.2)'; // Восстанавливаем тень
-        });
+      const bar = document.getElementById('bar');
+      const button = document.getElementById('progressBtn');
+      let interval;
+      let progress = 0;
+    
+      button.addEventListener('mousedown', () => {
+        progress = 0;
+        bar.style.width = '0%';
+    
+        interval = setInterval(() => {
+          if (progress >= 100) {
+            clearInterval(interval);
+          } else {
+            progress += 2;
+            bar.style.width = progress + '%';
+          }
+        }, 100);
+      });
+    
+      button.addEventListener('mouseup', () => {
+        clearInterval(interval);
+      });
+    
+      button.addEventListener('mouseleave', () => {
+        clearInterval(interval);
+      });
     </script>
+    
+    <footer>
+        &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025
+    </footer>
 
 </body>
 </html>

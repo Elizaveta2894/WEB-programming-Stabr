@@ -13,9 +13,9 @@ main {
     z-index: 0; 
 }
 footer {
-    background-color: coral;
-    color: darkslateblue;
-    font-family: Courier;
+    background-color: #0a122a;
+    color:#e6e8e6;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-size: 15pt;
     font-weight: bold;
     margin: 0px;
