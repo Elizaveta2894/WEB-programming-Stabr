@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Стабровская. Облако Тегов</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
+    <link rel= 'icon' href="../favicon-16x16.png"> 
+    <link rel= 'icon' href="../favicon-32x32.png">
     <style>
          header {
             position: absolute;
@@ -46,11 +50,11 @@
             position: relative;
             width: 80%;
             max-width: 800px;
-            height: 600px; /* Ограниченная высота */
+            height: 600px; 
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden; /* Обрезаем выходящие за границы теги */
+            overflow: hidden; 
         }
 
         .tag {
@@ -59,11 +63,10 @@
             border-radius: 5px;
             color: white;
             cursor: pointer;
-            transition: all 1s ease; /* Плавные переходы */
-            z-index: 1; /* Чтобы теги отображались друг над другом */
+            transition: all 1s ease; 
+            z-index: 1; 
         }
 
-        /* Уникальные стили для каждого тега */
         .tag:nth-child(1) { top: 10%; left: 15%; font-size: 40px; color: #5d2510; transform: rotate(-5deg); }
         .tag:nth-child(2) { top: 25%; left: 30%; font-size: 60px; color: #5c3b2e; transform: rotate(10deg); }
         .tag:nth-child(3) { top: 40%; left: 10%; font-size: 70px; background-color: #4c4a2a;  background: linear-gradient(90deg, #e74c3c, #f39c12);transform: rotate(-8deg); }
@@ -82,10 +85,10 @@
         .tag:nth-child(16) { top: 80%; left: 85%; font-size: 74px;color: #3498db; transform: rotate(12deg); }
 
         .tag:hover {
-            font-size: 1.7em; /* Увеличиваем размер */
-            text-shadow: 0 6px 6px rgba(0, 0, 0, 0.2); /* Добавляем тень */
-            z-index: 10; /* Выводим поверх остальных тегов */
-            transform: scale(1.7); /* Небольшое увеличение размера */
+            font-size: 1.7em;
+            text-shadow: 0 6px 6px rgba(0, 0, 0, 0.2); 
+            z-index: 10; 
+            transform: scale(1.7); 
         }
     </style>    
 </head>
