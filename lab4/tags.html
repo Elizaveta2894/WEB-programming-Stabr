@@ -1,58 +1,122 @@
+<!DOCTYPE html>
 <html lang="ru">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" 
-          content="width=device-width, initial-scale=1.0">
-    <title>Tag Cloud</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стабровская. Облако Тегов</title>
     <style>
-        .tag-cloud {
+         header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px;
+            background-color: #8c6d51;
+            color: #333;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 19px;
+            font-weight: 600;
+            z-index: 1; 
+            text-align: left; 
+         }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            padding: 20px;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #b3aca2;
+        }
+        footer {
+            background-color: #0a122a;
+            color:#e6e8e6;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 15pt;
+            font-weight: bold;
+            margin: 0px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            text-align: right; 
+        }
+
+        .tag-cloud {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            height: 600px; /* Ограниченная высота */
+            background-color: #fff;
             border-radius: 10px;
-            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Обрезаем выходящие за границы теги */
         }
 
         .tag {
+            position: absolute;
             padding: 5px 10px;
-            transition: transform 0.3s,
-                background-color 0.3s,
-                box-shadow 0.3s;
+            border-radius: 5px;
+            color: white;
             cursor: pointer;
+            transition: all 1s ease; /* Плавные переходы */
+            z-index: 1; /* Чтобы теги отображались друг над другом */
         }
 
-        .tag1:hover {
-            transform: scale(1.2);
-            color: rgb(102, 142, 24);
-        }
+        /* Уникальные стили для каждого тега */
+        .tag:nth-child(1) { top: 10%; left: 15%; font-size: 40px; color: #5d2510; transform: rotate(-5deg); }
+        .tag:nth-child(2) { top: 25%; left: 30%; font-size: 60px; color: #5c3b2e; transform: rotate(10deg); }
+        .tag:nth-child(3) { top: 40%; left: 10%; font-size: 70px; background-color: #4c4a2a;  background: linear-gradient(90deg, #e74c3c, #f39c12);transform: rotate(-8deg); }
+        .tag:nth-child(4) { top: 55%; left: 40%; font-size: 22px; color: #8e44ad; text-shadow: #b8441a; transform: (5deg); }
+        .tag:nth-child(5) { top: 50%; left: 80%; font-size: 24px; color: #f39c12; transform: rotate(-2deg); }
+        .tag:nth-child(6) { top: 12%; left: 55%; font-size: 56px; color: #16a085; transform: rotate(7deg); }
+        .tag:nth-child(7) { top: 28%; left: 75%; font-size: 19px; color: #c0392b; transform: rotate(-4deg); }
+        .tag:nth-child(8) { top: 43%; left: 65%; font-size: 21px; background-color: #9b59b6; border-radius: 50% 10% 50% 10%; transform: (3deg); }
+        .tag:nth-child(9) { top: 58%; left: 80%; font-size: 76px; color: #d35400; transform: rotate(-50deg); }
+        .tag:nth-child(10) { top: 73%; left: 30%; font-size: 56px; color: #7f8c8d; transform: rotate(1deg); }
+        .tag:nth-child(11) { top: 30%; left: 45%; font-size: 26px; color: #2ecc71; transform: rotate(-9deg); }
+        .tag:nth-child(12) { top: 45%; left: 25%; font-size: 28px; color: #34495e; transform: rotate(1deg); }
+        .tag:nth-child(13) { top: 20%; left: 50%; font-size: 35px; color: #e67e22; transform: rotate(-3deg); }
+        .tag:nth-child(14) { top: 8%; left: 40%; font-size: 29px; color: #95a5a6; transform: rotate(8deg); }
+        .tag:nth-child(15) { top: 58%; left: 5%; font-size: 67px; color: #1abc9c; transform: rotate(12deg); }
+        .tag:nth-child(16) { top: 80%; left: 85%; font-size: 74px;color: #3498db; transform: rotate(12deg); }
 
-        .tag1 {
-            font-size: 23px;
+        .tag:hover {
+            font-size: 1.7em; /* Увеличиваем размер */
+            text-shadow: 0 6px 6px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+            z-index: 10; /* Выводим поверх остальных тегов */
+            transform: scale(1.7); /* Небольшое увеличение размера */
         }
-
-        .tag2 {
-            padding-top: 10px;
-        }
-    </style>
+    </style>    
 </head>
 
 <body>
-    <div>
-        <h3>Create a tag cloud with CSS</h3>
-        <div class="tag-cloud">
-            <span class="tag tag1">HTML</span>
-            <span class="tag tag2">stands for</span>
-            <span class="tag tag1">
-              HyperText Markup Language
-              </span>
-            <span class="tag tag2">
-              It is the standard language used to create
-              and design web pages on the internet.
-            </span>
-        </div>
+    <header>
+        НГТУ, ФБ, Лабораторная 4
+    </header>
+
+    <div class="tag-cloud">
+        <div class="tag">Span</div>
+        <div class="tag">Strong</div>
+        <div class="tag">Img</div>
+        <div class="tag">Head</div>
+        <div class="tag">Meta</div>
+        <div class="tag">Body</div>
+        <div class="tag">Underline</div>
+        <div class="tag">Italic</div>
+        <div class="tag">Bold</div>
+        <div class="tag">Strikethrough</div>
+        <div class="tag">Superscript</div>
+        <div class="tag">Subscript</div>
+        <div class="tag">Href</div>
+        <div class="tag">Name</div>
+        <div class="tag">Height</div>
+         <div class="tag">Width</div>
     </div>
+    <footer>
+        &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025
+    </footer>
 </body>
 
 </html>
+
