@@ -20,7 +20,6 @@
 
 ## Лабораторная работа 5. JavaScript
 
-*Дата: 18.04.2025*
+*Дата: 19.04.2025*
 
-gnhkhkhjkdjldkfjgkdfgjld
 
