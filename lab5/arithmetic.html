@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стабровская Елизавета Евгеньевна. Лабораторная работа 5</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
+    <link rel= 'icon' href="../favicon-16x16.png"> 
+    <link rel= 'icon' href="../favicon-32x32.png">
+    <script>
+        function showSum() {
+            let a = 5154;
+            let b = 7891;
+            let result = a + b;
+            alert('Сумма '+ a +' и '+ b +' равна '+ result);
+        }
+        
+    </script>
+    <style>
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px;
+            background-color: #8c6d51;
+            color: #333;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 19px;
+            font-weight: 600;
+            z-index: 1; 
+            text-align: left; 
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #b3aca2;
+        }
+        .message {
+            cursor:pointer;
+            width: 100px;
+            height: 60px;
+            text-align: center;
+            border-radius: 30%;
+            padding: 20px;
+            margin: 40px;
+            background-color: #cdb89d;
+            color: #45462a;
+            border: 3px solid #422f28;
+            box-shadow: 3px 4px 2px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная 4
+    </header>
+
+    <main>
+        <div class="message" onclick="showSum()">Сколько будет 5154+7891?</div>
+        <div class="message">Узнать, кто автор страницы</div>
+    </main>
+
+    <footer>
+        &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025
+    </footer>
+</body>
+</html>
