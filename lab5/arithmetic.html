@@ -123,6 +123,17 @@
             let footer ='Приветствую вас на моей странице! \nУверенность в Целях — Путь к Реализации Мечтаний'
             alert(footer)
         }
+
+        function changeOutput(buttonNum, backColor, textColor, borderWidth, borderStyle, borderColor, borderRadius) {
+            let output = document.getElementById('output');
+            output.innerHTML = 'Нажата кнопка' + buttonNum;
+            output.style.backgroundColor = backColor;
+            output.style.color = textColor;
+            output.style.borderWidth = borderWidth;
+            output.style.borderStyle = borderStyle;
+            output.style.borderColor = borderColor;
+            output.style.borderRadius = borderRadius;
+        }
         
     </script>
     <style>
@@ -162,6 +173,13 @@
             box-shadow: 3px 4px 2px;
             display: inline-block;
         }
+
+        #output {
+            border: 1px solid;
+            width: 300px;
+            height: 40px;
+        }
+
         footer {
             cursor: pointer
         }
@@ -176,11 +194,21 @@
         <label>Первое число: <input type="number" value="5154" id="numberA"></label><br>
         <label>Второе число: <input type="number" value="7891" id="numberB"></label><br>
         <div class="message" onclick="showSum()">Найти сумму чисел</div>
-        <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
         <div class="message" onclick="showDifference()">Найти разность чисел</div>
         <div class="message" onclick="showMultiplication()">Найти произведение</div>
         <div class="message" onclick="showDiv()">Найти отношение чисел</div>
         <div class="message" onclick="showDegree()">Найти число в степени</div>
+
+        <div class="message" onclick="showAuthor()">Узнать, кто автор страницы</div>
+
+        <div>
+            <input type="button" value="Кнопка 1" onclick="changeOutput(1, 'red', 'yellow', '7px', 'solid', 'blue', '20px')">
+            <input type="button" value="Кнопка 2" onclick="changeOutput(2, 'black', 'lime', '10px', 'dashed', 'yellow', '10px' )">
+            <input type="button" value="Кнопка 3" onclick="changeOutput(3, '#f4e3b2', '#310e10', '1px', 'dotted', 'orange', '25px'  )">
+            <input type="button" value="Кнопка 4" onclick="changeOutput(4, '#102b1f', '#bd7880', '6px', 'double', 'pink', '14px' )">
+        </div>
+
+        <div id="output"></div>
     </main>
 
     <footer ondblclick="showFooter()">
