@@ -70,6 +70,51 @@
             let result = a / b;
             alert(a +' / '+ b +' = '+ result);  
         }
+
+        function showDegree() {
+            let inputA = document.getElementById('numberA');
+            let inputB = document.getElementById('numberB');
+            let a = parseInt(inputA.value);
+            let b = parseInt(inputB.value);
+
+            inputA.style.color='';
+            inputA.style.borderColor='';
+            inputB.style.color='';
+            inputB.style.borderColor='';
+
+            if (a === 0 && b === 0) {
+                alert('Два значения равны нулю, введите хотя бы одно число');
+                inputA.focus();
+                inputB.focus();
+                inputA.select();
+                inputB.select();
+                inputB.style.color = 'red';
+                inputB.style.borderColor = 'red';
+                inputA.style.color = 'red';
+                inputA.style.borderColor = 'red';
+                return;
+            }
+
+            if (isNaN(a) || isNaN(b)) {
+                alert('Проверьте поле, числа должны быть в двух ячейках!')
+                if (isNaN(a)) {
+                inputA.focus();
+                inputA.select();
+            } else {
+                inputB.focus();
+                inputB.select();
+            }
+                inputB.style.color = 'red';
+                inputB.style.borderColor = 'red';
+                inputA.style.color = 'red';
+                inputA.style.borderColor = 'red';
+                return;
+            }
+            
+            let result = a ** b;
+            alert(a +' ^ '+ b +' = '+ result);
+        }
+
         function showAuthor() {
             let author = 'Автор страницы: \nСтабровская Елизавета Евгеньевна'
             alert(author);
@@ -135,6 +180,7 @@
         <div class="message" onclick="showDifference()">Найти разность чисел</div>
         <div class="message" onclick="showMultiplication()">Найти произведение</div>
         <div class="message" onclick="showDiv()">Найти отношение чисел</div>
+        <div class="message" onclick="showDegree()">Найти число в степени</div>
     </main>
 
     <footer ondblclick="showFooter()">
