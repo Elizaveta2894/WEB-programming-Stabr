@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стабровская Елизавета Евгеньевна. Лабораторная работа 5</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
+    <link rel= 'icon' href="../favicon-16x16.png"> 
+    <link rel= 'icon' href="../favicon-32x32.png">
+    <script>
+        function bascetCalculation() {
+            let inputA = document.getElementById('numberA');
+            let inputB = document.getElementById('numberB');
+            let inputC = document.getElementById('numberC');
+            let inputD = document.getElementById('numberD');
+            let inputE = document.getElementById('numberE');
+            let a = parseInt(inputA.value) * 100;
+            let b = parseInt(inputB.value) * 80;
+            let c = parseInt(inputC.value) * 150;
+            let d = parseInt(inputD.value) * 300 ;
+            let e = parseInt(inputE.value) * 340;
+
+            if (a < 0 || isNaN(a)) {
+                alert('Вы ввели отрицательное число для яблок!')
+                inputA.focus();
+                inputA.select();
+                inputA.style.color = 'red';
+                inputA.style.borderColor = 'red';
+                return;
+            }
+
+            if (b < 0 || isNaN(b)) {
+            alert('Вы ввели отрицательное число для груш!');
+            inputB.focus();
+            inputB.select();
+            inputB.style.color = 'red';
+            inputB.style.borderColor = 'red';
+            return;
+            }
+            
+            if (c < 0 || isNaN(c)) {
+            alert('Вы ввели отрицательное число для апельсинов!');
+            inputC.focus();
+            inputC.select();
+            inputC.style.color = 'red';
+            inputC.style.borderColor = 'red';
+            return; 
+        }
+        if (d < 0 || isNaN(d)) {
+            alert('Вы ввели отрицательное число для бананов!');
+            inputD.focus();
+            inputD.select();
+            inputD.style.color = 'red';
+            inputD.style.borderColor = 'red';
+            return;
+        }
+        if (e < 0 || isNaN(e)) {
+            alert('Вы ввели отрицательное число для винограда!');
+            inputE.focus();
+            inputE.select();
+            inputE.style.color = 'red';
+            inputE.style.borderColor = 'red';
+            return;
+        }
+
+        let result = a + b + c + d + e;
+
+        document.getElementById('resultArea').innerText = "Общая цена: " + result + " р.";
+        }
+
+        function clearBascet() {
+            document.getElementById('numberA').value = '';
+            document.getElementById('numberB').value = '';
+            document.getElementById('numberC').value = '';
+            document.getElementById('numberD').value = '';
+            document.getElementById('numberE').value = '';
+
+            document.getElementById('resultArea').innerText = 'Общая цена: 0 р.';
+
+
+        }
+    </script>
+
+    <style>
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px;
+            background-color: #8c6d51;
+            color: #333;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 19px;
+            font-weight: 600;
+            z-index: 1; 
+            text-align: left; 
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #b3aca2;
+        }
+
+        main {
+            background-color: #f3e9dc;
+            border: 4px solid #212e40;
+            border-radius: 10%;
+            width: 300px;
+        }
+        .knopka {
+            padding: 5px;
+            margin: 8px;
+            border-radius: 7px;
+        }
+        .knopka2 {
+            padding: 5px;
+            margin: 10px;
+            border-radius: 7px;
+        }
+        .products {
+            margin-bottom: 5px;
+            display: block;
+            margin-left: 8px;
+            color: #342519;
+            font-size: 18px;
+        }
+        h2 {
+            color: #342519;
+            text-align: center;
+        }
+        .summ {
+            color: #342519;
+            margin: 7px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная 5
+    </header>
+
+    <main>
+            <h2>КОРЗИНА ТОВАРОВ</h2>
+        <label class="products">Яблоки (100р/шт): <input type="number" value="3" id="numberA" placeholder="сколько яблок надо?"></label><br>
+        <label class="products">Груши (80р/шт): <input type="number" value="8" id="numberB" placeholder="сколько груш надо?"></label><br>
+        <label class="products">Апельсины (150р/шт): <input type="number" value="4" id="numberC" placeholder="сколько апельсинов надо?"></label><br>
+        <label class="products">Дыни (300р/шт): <input type="number" value="1" id="numberD" placeholder="сколько дынь надо?"></label><br>
+        <label class="products">Арбуз (340р/шт): <input type="number" value="5" id="numberE" placeholder="сколько арбузов надо?"></label><br>
+        </div>
+
+        <div>
+            <label><input class="knopka" type="button" value="Рассчитать" onclick="bascetCalculation()" ></label>
+            <div class="summ" id="resultArea">Общая цена: 0 р.</div> 
+            <label><input  class="knopka2" type="button" value="Очистить" onclick="clearBascet()" ></label>
+        </div>
+
+    </main>
+
+    <footer>
+        &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025
+    </footer>
+    
+</body>
+</html>
