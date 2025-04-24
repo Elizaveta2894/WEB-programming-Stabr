@@ -1,0 +1,84 @@
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стабровская Елизавета Евгеньевна. Лабораторная работа 5</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
+    <link rel= 'icon' href="../favicon-16x16.png"> 
+    <link rel= 'icon' href="../favicon-32x32.png">
+    <script>
+        function returnMarks() {
+            document.getElementById('numberA').value = 'cloud1';
+            document.getElementById('numberB').value = 'cloud2';
+            document.getElementById('numberC').value = 'cloud3';
+            document.getElementById('numberD').value = 'cloud4';
+            document.getElementById('numberE').value = 'cloud5';
+
+        }
+    </script>
+    <style>
+        .cloud {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 15px;
+            position: absolute; 
+            width: 100px;
+            height: 100px; 
+            border-radius: 50%;
+        }
+        .cloud1 {left: 220px; top: 140px; background-color: #aacc96; color: #25533f; border: 4px solid darkgreen;}
+        .cloud2 {left: 400px; top: 50px; background-color: #f4beae; color: #876029; border: 4px solid #876029;}
+        .cloud3 {left: 900px; top: 400px; background-color: #ff7bac; color: #6d1f42; border: 4px solid #6d1f42;}
+        .cloud4 {left: 700px; top: 300px; background-color: #afab23; color: #6b104d; border: 4px solid #6b104d;}
+        .cloud5 {left: 500px; top: 400px; background-color: #52a5ce; color: #ffd965; border: 4px solid #ffd965;}
+        .cloud6 {left: 380px; top: 200px; background-color: #a98067; color: #cce6c8; border: 4px solid #cce6c8;}
+        .cloud7 {left: 980px; top: 100px; background-color: #c4c3e3; color: #504e76; border: 4px solid #504e76;}
+        .cloud8 {left: 570px; top: 200px; background-color: #ea9a00; color: #4b4139; border: 4px solid #4b4139;}
+        .cloud9 {left: 200px; top: 460px; background-color: #a5231c; color: white; border: 4px solid white;}
+        .cloud10 {left: 970px; top: 300px; background-color: #45151b; color: #ea9dae; border: 4px solid #ea9dae;}
+
+        #fade { transition: all 1s; }
+        #fade.hide {
+        opacity: 0;
+        visibility: hidden;
+        height: 0; 
+        padding: 0; 
+        margin: 0;
+        }
+
+    </style>
+
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная 5
+    </header>
+
+    <main>
+        <div class="cloud cloud1" id="fade" onclick="this.classList.toggle('hide')">1</div>
+        <div class="cloud cloud2" id="fade" onclick="this.classList.toggle('hide')">2</div>
+        <div class="cloud cloud3" id="fade" onclick="this.classList.toggle('hide')">3</div>
+        <div class="cloud cloud4" id="fade" onclick="this.classList.toggle('hide')">4</div>
+        <div class="cloud cloud5" id="fade" onclick="this.classList.toggle('hide')">5</div>
+        <div class="cloud cloud6" id="fade" onclick="this.classList.toggle('hide')">6</div>
+        <div class="cloud cloud7" id="fade" onclick="this.classList.toggle('hide')">7</div>
+        <div class="cloud cloud8" id="fade" onclick="this.classList.toggle('hide')">8</div>
+        <div class="cloud cloud9" id="fade" onclick="this.classList.toggle('hide')">9</div>
+        <div class="cloud cloud10" id="fade" onclick="this.classList.toggle('hide')">10</div>
+
+        <div>
+            <label><input type="button" value="Вернуть назад" onclick="returnMarks()"></label>
+        </div>
+    </main>
+    
+    <footer>
+        &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025
+    </footer>
+</body>
+</html>
