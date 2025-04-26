@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стабровская Елизавета Евгеньевна. Лабораторная работа 5</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
+    <link rel= 'icon' href="../favicon-16x16.png"> 
+    <link rel= 'icon' href="../favicon-32x32.png">
+    <script>
+        function addFilter(event) {
+            let img = document.getElementById('filteredImage');
+            let info = document.getElementById('info'); 
+    
+            let rect = img.getBoundingClientRect();
+            let x = event.clientX - rect.left; 
+            let percent = x / img.clientWidth;
+            let blurValue = (percent * 10).toFixed(2);
+    
+            let filter = "blur(" + blurValue + "px)";
+            let description = "Фильтр: blur(" + blurValue + "px)";
+    
+            if (event.ctrlKey) { 
+                filter += ' grayscale(100%)';
+                description += ' +grayscale(100%)';
+            }
+    
+            if (event.altKey) {  
+                filter += ' saturate(100%)';
+                description += ' +saturate(100%)';
+            }
+    
+            if (event.shiftKey) {
+                filter += ' sepia(100%)';
+                description += ' +sepia(100%)';
+            }
+            img.style.filter = filter;
+            info.innerHTML = description;
+        }
+    
+        function clearFilter() {
+            let img = document.getElementById('filteredImage');
+            let info = document.getElementById('info');
+            img.style.filter = 'none';
+            info.innerHTML = 'Фильтр: none';
+        }
+    </script>
+    <style>
+        #filteredImage {
+            max-width: 800px;
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+            transition: filter 0.4s ease;
+            border: solid #6d1f42;
+        }
+    
+        #info {
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+    
+        #help {
+            margin-top: 30px;
+            font-style: oblique;
+            color:black;
+            text-align: center;
+        }
+    </style>
+    </head>
+    
+    <body>
+    <header>
+        НГТУ, ФБ, Лабораторная 5
+    </header>
+    
+    <main>
+        <img src="dop_dop.jpg" id="filteredImage" onmousemove="addFilter(event)" onmouseleave="clearFilter()"> 
+        <div id="info">Фильтр: none</div>
+    
+        <div id="help">
+            После наведения мыши на картинку-будет применяться фильтр blur.
+            Вы также можете нажать на CTRL, ALT и SHIFT, чтобы применить другие фильтры
+        </div>
+    </main>
+    <footer>
+        &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025
+    </footer>
+    </body>
+    </html>
+    
+    
