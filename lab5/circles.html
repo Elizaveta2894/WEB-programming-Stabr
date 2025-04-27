@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,78 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Стабровская Елизавета Евгеньевна. Лабораторная работа 5</title>
     <link rel="stylesheet" href="../main.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
-    <link rel= 'icon' href="../favicon-16x16.png"> 
-    <link rel= 'icon' href="../favicon-32x32.png">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../favicon-32x32.png">
+    <link rel="shortcut icon" href="../favicon-16x16.ico">
+    
     <script>
-        function returnMarks() {
-            document.getElementById('numberA').value = 'cloud1';
-            document.getElementById('numberB').value = 'cloud2';
-            document.getElementById('numberC').value = 'cloud3';
-            document.getElementById('numberD').value = 'cloud4';
-            document.getElementById('numberE').value = 'cloud5';
+        function cloud(n) {
+            const circle = document.querySelector('.t' + n);
+            circle.classList.add('hidden');
+        }
 
+        function resetCircles() {
+            const allCircles = document.querySelectorAll('.circle');
+            allCircles.forEach(circle => {
+                circle.classList.remove('hidden');
+            });
         }
     </script>
     <style>
-        .cloud {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            margin: 15px;
-            position: absolute; 
-            width: 100px;
-            height: 100px; 
+        body {
+            position: relative;
+            height: 100vh;
+        }
+
+        div.circle {
+            position: absolute;
+            border: 1px solid;
             border-radius: 50%;
-        }
-        .cloud1 {left: 220px; top: 140px; background-color: #aacc96; color: #25533f; border: 4px solid darkgreen;}
-        .cloud2 {left: 400px; top: 50px; background-color: #f4beae; color: #876029; border: 4px solid #876029;}
-        .cloud3 {left: 900px; top: 400px; background-color: #ff7bac; color: #6d1f42; border: 4px solid #6d1f42;}
-        .cloud4 {left: 700px; top: 300px; background-color: #afab23; color: #6b104d; border: 4px solid #6b104d;}
-        .cloud5 {left: 500px; top: 400px; background-color: #52a5ce; color: #ffd965; border: 4px solid #ffd965;}
-        .cloud6 {left: 380px; top: 200px; background-color: #a98067; color: #cce6c8; border: 4px solid #cce6c8;}
-        .cloud7 {left: 980px; top: 100px; background-color: #c4c3e3; color: #504e76; border: 4px solid #504e76;}
-        .cloud8 {left: 570px; top: 200px; background-color: #ea9a00; color: #4b4139; border: 4px solid #4b4139;}
-        .cloud9 {left: 200px; top: 460px; background-color: #a5231c; color: white; border: 4px solid white;}
-        .cloud10 {left: 970px; top: 300px; background-color: #45151b; color: #ea9dae; border: 4px solid #ea9dae;}
-
-        #fade { transition: all 1s; }
-        #fade.hide {
-        opacity: 0;
-        visibility: hidden;
-        height: 0; 
-        padding: 0; 
-        margin: 0;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.6s ease;
         }
 
+        .hidden {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            padding: 0;
+            line-height: 0;
+        }
+
+        .t1  {left: 220px; top: 140px; background-color: #aacc96; color: #25533f; border: 4px solid darkgreen;}
+        .t2  {left: 400px; top: 50px; background-color: #f4beae; color: #876029; border: 4px solid #876029; }
+        .t3  {left: 900px; top: 400px; background-color: #ff7bac; color: #6d1f42; border: 4px solid #6d1f42; }
+        .t4  {left: 700px; top: 300px; background-color: #afab23; color: #6b104d; border: 4px solid #6b104d; }
+        .t5  { left: 500px; top: 400px; background-color: #52a5ce; color: #ffd965; border: 4px solid #ffd965; }
+        .t6  { left: 380px; top: 200px; background-color: #a98067; color: #cce6c8; border: 4px solid #cce6c8; }
+        .t7  { left: 980px; top: 100px; background-color: #c4c3e3; color: #504e76; border: 4px solid #504e76; }
+        .t8  { left: 570px; top: 200px; background-color: #ea9a00; color: #4b4139; border: 4px solid #4b4139; }
+        .t9  { left: 200px; top: 460px; background-color: #a5231c; color: white; border: 4px solid white;  }
+        .t10 { left: 970px; top: 300px; background-color: #45151b; color: #ea9dae; border: 4px solid #ea9dae; }
+
+        button {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            top: 200px;
+            padding: 10px;
+            font-size: 16px;
+            width: 170px;
+            height: 100px;
+            display: block;
+        }
     </style>
-
 </head>
 <body>
     <header>
-        НГТУ, ФБ, Лабораторная 5
+        НГТУ, ФБ, Лабораторная работа 5
     </header>
 
     <main>
-        <div class="cloud cloud1" id="fade" onclick="this.classList.toggle('hide')">1</div>
-        <div class="cloud cloud2" id="fade" onclick="this.classList.toggle('hide')">2</div>
-        <div class="cloud cloud3" id="fade" onclick="this.classList.toggle('hide')">3</div>
-        <div class="cloud cloud4" id="fade" onclick="this.classList.toggle('hide')">4</div>
-        <div class="cloud cloud5" id="fade" onclick="this.classList.toggle('hide')">5</div>
-        <div class="cloud cloud6" id="fade" onclick="this.classList.toggle('hide')">6</div>
-        <div class="cloud cloud7" id="fade" onclick="this.classList.toggle('hide')">7</div>
-        <div class="cloud cloud8" id="fade" onclick="this.classList.toggle('hide')">8</div>
-        <div class="cloud cloud9" id="fade" onclick="this.classList.toggle('hide')">9</div>
-        <div class="cloud cloud10" id="fade" onclick="this.classList.toggle('hide')">10</div>
+        <div class="circle t1" onclick="cloud(1)">1</div>
+        <div class="circle t2" onclick="cloud(2)">2</div>
+        <div class="circle t3" onclick="cloud(3)">3</div>
+        <div class="circle t4" onclick="cloud(4)">4</div>
+        <div class="circle t5" onclick="cloud(5)">5</div>
+        <div class="circle t6" onclick="cloud(6)">6</div>
+        <div class="circle t7" onclick="cloud(7)">7</div>
+        <div class="circle t8" onclick="cloud(8)">8</div>
+        <div class="circle t9" onclick="cloud(9)">9</div>
+        <div class="circle t10" onclick="cloud(10)">10</div>
 
-        <div>
-            <label><input type="button" value="Вернуть назад" onclick="returnMarks()"></label>
-        </div>
+        <button onclick="resetCircles()">Показать все круги</button>
     </main>
-    
+
     <footer>
-        &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025
+        &copy; Стабровская Елизавета, ФБИ-33, 2 курс, 2025
     </footer>
+
 </body>
 </html>
