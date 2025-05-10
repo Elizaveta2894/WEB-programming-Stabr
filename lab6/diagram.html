@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Диаграмма</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
+    <link rel= 'icon' href="../favicon-16x16.png"> 
+    <link rel= 'icon' href="../favicon-32x32.png">
+    <style>
+        #diag {
+            width: 600px;
+            height: 300px;
+            display: flex;
+            justify-content: space-around; 
+            align-items: flex-end; 
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .bar {
+            width: 30px; 
+            margin: 5px;
+            text-align: center;
+            color: #333;
+            display: flex; 
+            flex-direction: column;
+            justify-content: flex-end; 
+            align-items: center; 
+        }
+        .bar span {
+            margin-bottom: 5px; 
+        }
+    </style>
+    <script>
+        function createDiagram() {
+            const data = [36, 86, 55, 28, 92, 60, 41, 17, 9, 43];
+            const colors = ['#558B2F', '#9FA8DA', '#A1887F', '#1E88E5', '#D81B60', '#6D4C41', '#5E35B1', '#8BC34A', '#388E3C', '#E53935'];
+            const diag = document.getElementById("diag");
+            const maxHeight = diag.clientHeight;
+            const maxValue = Math.max(...data);
+
+            diag.innerHTML = '';
+
+            for (let i = 0; i < data.length; i++) {
+                const bar = document.createElement("div");
+                bar.classList.add("bar");
+                bar.style.backgroundColor = colors[i];
+                bar.style.height = (data[i] / maxValue) * maxHeight + "px";
+
+                const label = document.createElement("span");
+                label.textContent = data[i];
+
+                bar.appendChild(label);
+                diag.appendChild(bar);
+            }
+        }
+
+        window.onload = createDiagram;
+    </script>
+</head>
+
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+    </header>
+
+    <main>
+        <div id="diag">
+        </div>
+    </main>
+</body>
+
+</html>
