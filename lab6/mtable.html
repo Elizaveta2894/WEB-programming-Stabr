@@ -5,55 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Стабровская Елизавета Евгеньевна. Лабораторная работа 6</title>
     <link rel="stylesheet" href="../main.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
-    <link rel= 'icon' href="../favicon-16x16.png"> 
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel= 'icon' href="../favicon-16x16.png">
     <link rel= 'icon' href="../favicon-32x32.png">
     <script>
-        function showMultipleTable() {
-            let tbl=document.getElementById('mtable');
-            tbl.innerHTML="<h1>Таблица умножения</h1>";
-            for (i=1; i<=10;i++) {
-                let s = `<div>${i} * 7 = ${i*7}</div>`;
-                tbl.innerHTML+=s;
+        function showMutipleTable(multiplier, start, end) {
+            let tbl = document.getElementById('mtable');
+            tbl.innerHTML = '<h1>Таблица умножения</h1>';
+
+            if (start > end) {
+                tbl.innerHTML += "<div style='color:red;'>Ошибка: 'Начать с' должно быть меньше или равно 'Закончить на'.</div>";
+                return;
+            }
+
+            for (let i = start; i <= end; i++) {
+                let s = `<div class="table-row">${i} * ${multiplier} = ${i * multiplier}</div>`; 
+                tbl.innerHTML += s;
             }
         }
-        showMultipleTable()
+        function generateTable() {
+            let multiplier = parseInt(document.getElementById('multiplier').value);
+            let start = parseInt(document.getElementById('start').value);
+            let end = parseInt(document.getElementById('end').value);
+
+            if (isNaN(multiplier) || isNaN(start) || isNaN(end)) {  
+                alert("Пожалуйста, введите числа во все поля.");
+                return;
+            }
+
+            showMutipleTable(multiplier, start, end);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            showMutipleTable(7, 1, 10);  
+        });
+
     </script>
     <style>
         body{
-            background-color: #765d67;
-        }
+                background-color: #765d67;
+            }
         main {
-            background-color: #765d67;
-        }
+                background-color: #765d67;
+            }
         #mtable {
-            text-align: left;
-            font-size: 25px;
-            color: antiquewhite;
-            border: 4px solid;
-            border-color: #1b0c1a;
-            padding: 20px;
-
-        }
+                text-align: left;
+                font-size: 25px;
+                color: antiquewhite;
+                border: 4px solid;
+                border-color: #1b0c1a;
+                padding: 20px;
+    
+            }
         #mtable h1 {
-            text-align: center;
-            font-size: 35px ;
-        }
+                text-align: center;
+                font-size: 35px ;
+            }
 
+        .table-row {
+            margin-bottom: 5px;
+        }
+        .bottom1{
+            color: aliceblue;
+        }
+    
     </style>
 </head>
-<body onload="showMultipleTable()">
-    <header>
-        НГТУ, ФБ, Лабораторная 6 
-    </header>
 
-    <main>
-        <div id="mtable"></div>
-    </main>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6
+            <hr>
+        </header>
 
+        <main>
+            <div id="mtable"></div>
+            <div class="input-container">
+                <label for="multiplier" class="bottom1">Умножить на:</label>
+                <input type="number" id="multiplier" value="7"> <br><br>
+
+                <label for="start" class="bottom1">Начать с:</label>
+                <input type="number" id="start" value="1"> <br><br>
+
+                <label for="end" class="bottom1">Закончить на:</label>
+                <input type="number" id="end" value="10"> <br><br>
+
+                <button onclick="generateTable()">Таблица</button>
+            </div>
+        </main>
     <footer>
         &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025
     </footer>
-    
+
 </body>
 </html>
