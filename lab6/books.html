@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Объекты</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
+    <link rel= 'icon' href="../favicon-16x16.png"> 
+    <link rel= 'icon' href="../favicon-32x32.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        main {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        .book-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .bestseller {
+            background-color: #ffffe0; 
+            border: 2px solid #ffc107; 
+        }
+
+        .not-available {
+            color: #aaa;
+        }
+    </style>
+    <script src="books.js"></script>
+    <script>
+       function showBooks() {
+            const bookList = document.getElementById('bookList');
+            let html = '';
+            for (let i = 0; i < books.length; i++) {
+                const book = books[i];
+                const bookClass = book.bestseller ? 'book-item bestseller' : 'book-item';
+                const availabilityClass = book.available ? '' : 'not-available';
+
+                html += `
+                    <div class="${bookClass} ${availabilityClass}">
+                        <b>${book.author}.</b>
+                        <i>${book.name}</i>
+                        &mdash; ${book.publicationYear}
+                        <br>
+                        Цена: $${book.price.toFixed(2)}
+                        ${!book.available ? '<br>(Нет в наличии)' : ''}
+                    </div>
+                `;
+            }
+            bookList.innerHTML = html;
+        }
+    </script>
+</head>
+<body onload="showBooks()">
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+    </header>
+    <main>
+        <h1>Список книг</h1>
+        <div id ="bookList"></div>
+    </main>
+    <footer>
+        &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025
+    </footer>
+</body>
+</html>
