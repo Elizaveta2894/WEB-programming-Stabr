@@ -1,24 +1,58 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Дата-время</title>
     <link rel="stylesheet" href="../main.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
     <link rel= 'icon' href="../favicon-16x16.png"> 
     <link rel= 'icon' href="../favicon-32x32.png">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        header {
+            background-color: #f0f0f0;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: color 0.5s ease; 
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .date-format {
+            margin-bottom: 5px;
+        }
+        button {
+            margin-right: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
     <script>
+        const dateFormats = {
+            'ru-RU': 'Русский (Россия)',
+            'ar-LY': 'Арабский (Ливия)',
+            'cs-CZ': 'Чешский (Чехия)',
+            'el-GR': 'Греческий (Греция)',
+            'en-US': 'Английский (США)',
+            'es-BO': 'Испанский (Боливия)',
+            'zh-CN': 'Китайский (Китай)'
+        };
+        let colorTimerNum;
+        let dateTimerNum;
+
         function showDate() {
-            const dateFormats = {
-                'ru-RU': 'Русский (Россия)',
-                'ar-LY': 'Арабский (Ливия)',
-                'cs-CZ': 'Чешский (Чехия)',
-                'el-GR': 'Греческий (Греция)',
-                'en-US': 'Английский (США)',
-                'es-BO': 'Испанский (Боливия)',
-                'zh-CN': 'Китайский (Китай)'
-            };
             let mainDiv = document.querySelector('main');
             mainDiv.innerHTML = "";
 
@@ -27,7 +61,7 @@
                 let options = {
                     year: 'numeric', month: 'numeric', day: 'numeric',
                     hour: 'numeric', minute: 'numeric', second: 'numeric',
-                    hour12: true 
+                    hour12: true
                 };
                 let formattedDateTime = today.toLocaleString(locale, options);
 
@@ -38,17 +72,89 @@
                 mainDiv.appendChild(dateDiv);
             }
         }
-    </script>
-</head>
-<body onload="showDate()">
-    <header>
-        НГТУ, ФБ, Лабораторная работа 6
-    </header>
-    <main>
 
-    </main>
-    <footer>
-        &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025
-    </footer>
-</body>
-</html>
+        function changeColors() {
+            const header = document.getElementsByTagName('header')[0];
+            const rgb = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+            header.style.color = rgb;
+        }
+
+
+        function startChangeColors() {
+            changeColors();
+                        colorTimerNum = setInterval(changeColors, 2500); 
+            document.getElementById('start-color-btn').disabled = true;
+            document.getElementById('stop-color-btn').disabled = false;
+        }
+
+        function stopChangeColors() {
+            clearInterval(colorTimerNum);
+            document.getElementById('start-color-btn').disabled = false;
+            document.getElementById('stop-color-btn').disabled = true;
+        }
+
+         function initButtons() {
+             let mainDiv = document.querySelector('main');
+
+             let buttonDiv = document.createElement('div');
+
+             let startColorButton = document.createElement('button');
+             startColorButton.textContent = "Старт смена цвета";
+             startColorButton.id = "start-color-btn";
+             startColorButton.onclick = startChangeColors;
+
+             let stopColorButton = document.createElement('button');
+             stopColorButton.textContent = "Стоп смена цвета";
+             stopColorButton.id = "stop-color-btn";
+             stopColorButton.onclick = stopChangeColors;
+             stopColorButton.disabled = true;
+
+             buttonDiv.appendChild(startColorButton);
+             buttonDiv.appendChild(stopColorButton);
+
+
+             let startDateTimeButton = document.createElement('button');
+             startDateTimeButton.textContent = "Обновлять время";
+             startDateTimeButton.id = "start-date-btn";
+             startDateTimeButton.onclick = startUpdateDateTime;
+
+             let stopDateTimeButton = document.createElement('button');
+             stopDateTimeButton.textContent = "Остановить обновление времени";
+             stopDateTimeButton.id = "stop-date-btn";
+             stopDateTimeButton.onclick = stopUpdateDateTime;
+             stopDateTimeButton.disabled = true;
+
+             buttonDiv.appendChild(startDateTimeButton);
+             buttonDiv.appendChild(stopDateTimeButton);
+
+
+             mainDiv.insertBefore(buttonDiv, mainDiv.firstChild); 
+
+         }
+         function startUpdateDateTime() {
+            showDate();
+             dateTimerNum = setInterval(showDate, 1000);
+             document.getElementById('start-date-btn').disabled = true;
+             document.getElementById('stop-date-btn').disabled = false;
+         }
+
+         function stopUpdateDateTime() {
+             clearInterval(dateTimerNum);
+             document.getElementById('start-date-btn').disabled = false;
+             document.getElementById('stop-date-btn').disabled = true;
+         }
+
+         </script>
+         </head>
+         <body onload="showDate(); initButtons();">
+             <header>
+                 НГТУ, ФБ, Лабораторная работа 6
+             </header>
+             <main>
+
+             </main>
+             <footer>
+                &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025
+             </footer>
+         </body>
+         </html>
