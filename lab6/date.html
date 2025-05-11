@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дата-время</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
+    <link rel= 'icon' href="../favicon-16x16.png"> 
+    <link rel= 'icon' href="../favicon-32x32.png">
+    <script>
+        function showDate() {
+            const dateFormats = {
+                'ru-RU': 'Русский (Россия)',
+                'ar-LY': 'Арабский (Ливия)',
+                'cs-CZ': 'Чешский (Чехия)',
+                'el-GR': 'Греческий (Греция)',
+                'en-US': 'Английский (США)',
+                'es-BO': 'Испанский (Боливия)',
+                'zh-CN': 'Китайский (Китай)'
+            };
+            let mainDiv = document.querySelector('main');
+            mainDiv.innerHTML = "";
+
+            for (let locale in dateFormats) {
+                let today = new Date();
+                let options = {
+                    year: 'numeric', month: 'numeric', day: 'numeric',
+                    hour: 'numeric', minute: 'numeric', second: 'numeric',
+                    hour12: true 
+                };
+                let formattedDateTime = today.toLocaleString(locale, options);
+
+                let dateDiv = document.createElement('div');
+                dateDiv.classList.add('date-format');
+                dateDiv.textContent = `Дата и время для ${dateFormats[locale]}: ${formattedDateTime}`;
+
+                mainDiv.appendChild(dateDiv);
+            }
+        }
+    </script>
+</head>
+<body onload="showDate()">
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+    </header>
+    <main>
+
+    </main>
+    <footer>
+        &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025
+    </footer>
+</body>
+</html>
