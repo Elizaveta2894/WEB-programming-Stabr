@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Диаграмма температуры</title>
+  <link rel="stylesheet" href="../main.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel= 'icon' href="../favicon-16x16.png">
+  <link rel= 'icon' href="../favicon-32x32.png">
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+        margin-bottom: 240px;
+    }
+    .chart {
+      display: flex;
+      width: 80%; 
+      height: 200px; 
+      align-items: flex-end;
+      margin-bottom: 80px;
+    }
+    .bar {
+      width: 30px;
+      margin: 3px; 
+      position: relative;
+      text-align: center;
+    }
+    .max-temp {
+      background-color: rgb(126, 167, 14);
+      width: 100%;
+    }
+    .min-temp {
+      background-color: darkblue;
+      width: 100%;
+    }
+    .highlighted {
+      background-color: rgb(224, 29, 194); 
+    }
+    .temp-label {
+      position: absolute;
+      top: -20px; 
+      left: 70%;
+      transform: translateX(-80%);
+      font-size: 0.7em;
+    }
+    .input-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: -10px;
+    }
+    #day-number {
+      width: 50px;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+    </header>
+
+  <h1>Диаграмма температуры за месяц</h1>
+
+  <div class="chart" id="temperature-chart"></div>
+
+  <div class="input-container">
+    <label for="day-number">Введите номер дня:</label>
+    <input type="number" id="day-number" min="1" max="30">
+    <button id="find-button">Найти</button>
+  </div>
+
+  <div id="temperature-display">
+    <p>Минимальная температура: <span id="min-temp-value"></span></p>
+    <p>Максимальная температура: <span id="max-temp-value"></span></p>
+  </div>
+
+  <script>
+    const chartContainer = document.getElementById('temperature-chart');
+    const dayNumberInput = document.getElementById('day-number');
+    const findButton = document.getElementById('find-button');
+    const minTempValue = document.getElementById('min-temp-value');
+    const maxTempValue = document.getElementById('max-temp-value');
+    let bars = []; 
+        let temperatureData = []; 
+    let highlightedBar = null; 
+    let minTemp = 10;
+    let maxTemp = 40;
+
+    function generateRandomTemperatures() {
+      temperatureData = [];
+      for (let i = 0; i < 30; i++) {
+        const min = Math.floor(Math.random() * (maxTemp - minTemp + 1)) + minTemp;
+        const max = Math.floor(Math.random() * (maxTemp - min + 1)) + min;
+        temperatureData.push({ min, max });
+      }
+    }
+
+    function createChart() {
+      chartContainer.innerHTML = ''; 
+      bars = []; 
+      const chartHeight = chartContainer.clientHeight;
+
+      temperatureData.forEach((temps, index) => {
+        const { min, max } = temps;
+
+        const bar = document.createElement('div');
+        bar.classList.add('bar');
+        bar.dataset.day = index + 1; 
+
+        const maxTempBar = document.createElement('div');
+        maxTempBar.classList.add('max-temp');
+        maxTempBar.style.height = `${(max / maxTemp) * chartHeight}px`;
+        maxTempBar.title = `Day ${index + 1} Max: ${max}°C`;
+
+        const minTempBar = document.createElement('div');
+        minTempBar.classList.add('min-temp');
+        minTempBar.style.height = `${(min / maxTemp) * chartHeight}px`;
+        minTempBar.title = `Day ${index + 1} Min: ${min}°C`;
+        bar.appendChild(minTempBar);
+        bar.appendChild(maxTempBar);
+
+        const maxTempLabel = document.createElement('span');
+        maxTempLabel.classList.add('temp-label');
+        maxTempLabel.textContent = `${max}°C`;
+        maxTempBar.appendChild(maxTempLabel);
+
+        const minTempLabel = document.createElement('span');
+        minTempLabel.classList.add('temp-label');
+        minTempLabel.textContent = `${min}°C`;
+        minTempBar.appendChild(minTempLabel);
+
+        chartContainer.appendChild(bar);
+        bars.push(bar);
+      });
+    }
+
+    function highlightBar(day) {
+      if (highlightedBar) {
+        highlightedBar.classList.remove('highlighted');
+      }
+
+      const barToHighlight = bars[day - 1];
+      if (barToHighlight) {
+        barToHighlight.classList.add('highlighted');
+        highlightedBar = barToHighlight;
+
+        const { min, max } = temperatureData[day - 1];
+        minTempValue.textContent = min + "°C";
+        maxTempValue.textContent = max + "°C";
+      } else {
+        minTempValue.textContent = "";
+        maxTempValue.textContent = "";
+      }
+    }
+
+    findButton.addEventListener('click', () => {
+      const day = parseInt(dayNumberInput.value);
+      if (day >= 1 && day <= 30) {
+        highlightBar(day);
+      } else {
+        alert('Пожалуйста, введите номер дня от 1 до 30.');
+      }
+    });
+
+    generateRandomTemperatures();
+    createChart();
+
+  </script>
+
+  <footer>
+    &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025
+  </footer>
+
+</body>
+</html>
