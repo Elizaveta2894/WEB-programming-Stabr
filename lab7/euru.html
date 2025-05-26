@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курс Евро</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        .exchange-info {
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif;
+        }
+        .exchange-rate {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .exchange-date {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        .previous-rate {
+            margin-bottom: 15px;
+        }
+        .difference {
+            padding: 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .up {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .down {
+            background-color: #2ecc71;
+            color: white;
+        }
+        .equal {
+            background-color: #3498db;
+            color: white;
+        }
+        .source {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function getEuroExchangeRate() {
+            const url = 'https://www.cbr-xml-daily.ru/daily_json.js';
+            fetch(url)
+            .then(response => response.json()) 
+            .then(json => { 
+                if (json && json.Valute && json.Valute.EUR && json.Valute.EUR.Value) {
+                    displayExchangeRate(json);
+                } else {
+                    alert('Не удалось получить курс евро. Проверьте консоль.');
+                    console.error('Ошибка при получении курса евро:', json);
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка при выполнении запроса:', error);
+                alert('Произошла ошибка при получении данных. Проверьте консоль.');
+            });
+        }
+
+        function displayExchangeRate(data) {
+            const eur = data.Valute.EUR;
+            const currentRate = eur.Value.toFixed(2);
+            const previousRate = eur.Previous.toFixed(2);
+            const date = new Date(data.Date).toLocaleString('ru-RU');
+            
+            const difference = (eur.Value - eur.Previous).toFixed(2);
+            let differenceClass, differenceText;
+            
+            if (difference > 0) {
+                differenceClass = 'up';
+                differenceText = `Курс вырос на ${difference} руб.`;
+            } else if (difference < 0) {
+                differenceClass = 'down';
+                differenceText = `Курс снизился на ${Math.abs(difference)} руб.`;
+            } else {
+                differenceClass = 'equal';
+                differenceText = 'Курс не изменился';
+            }
+            
+            const resultDiv = document.getElementById('exchange-result');
+            resultDiv.innerHTML = `
+                <div class="exchange-rate">Текущий курс евро: ${currentRate} руб.
+                    </div>
+                <div class="exchange-date">Дата запроса: ${date}</div>
+                <div class="previous-rate">Предыдущий курс: ${previousRate} руб.</div>
+                <div class="difference ${differenceClass}">${differenceText}</div>
+                <div class="source">
+                    Источник данных: <a href="https://www.cbr-xml-daily.ru/" target="_blank">ЦБ РФ</a>. 
+                    Данные предоставляются без гарантий и могут использоваться свободно.
+                </div>
+            `;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная 7
+    </header>
+    <main>
+        <button onclick="getEuroExchangeRate()">Получить курс евро</button>
+        <div id="exchange-result" class="exchange-info" style="display: none;"></div>
+    </main>
+    <footer>
+        &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025
+    </footer>
+</body>
+</html>
