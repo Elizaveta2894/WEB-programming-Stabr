@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Курс акций ФосАгро</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> 
+    <link rel= 'icon' href="../favicon-16x16.png"> 
+    <link rel= 'icon' href="../favicon-32x32.png">
+    <style>
+        .positive {
+            color: green;
+        }
+        .negative {
+            color: red;
+        }
+    </style>
+    <script src="quote.js"></script>
+    <script>
+        const stockDates = [
+            "2025-05-26", "2025-05-25", "2025-05-24", "2025-05-23", "2025-05-22",
+            "2025-05-21", "2025-05-20", "2025-05-19", "2025-05-18", "2025-05-17"
+        ];
+        function showStockData() {
+            const table = document.getElementById('stockTable');
+            const button = document.querySelector('button');
+            let tableHTML = `
+                <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Цена акций</th>
+                        <th>Разница</th>
+                    </tr>
+                </thead>
+                <tbody>
+            `;
+
+            for (let i = 0; i < stockPrices.length; i++) {
+                let diff = i > 0 ? stockPrices[i] - stockPrices[i - 1] : '-';
+                let diffClass = '';
+
+                if (diff !== '-') {
+                    if (diff > 0) {
+                        diffClass = 'positive';
+                    } else if (diff < 0) {
+                        diffClass = 'negative';
+                    }
+                    diff = diff.toFixed(2); 
+                }
+                tableHTML += `
+                    <tr>
+                        <td>${stockDates[i]}</td>
+                        <td>${stockPrices[i].toFixed(2)}</td> 
+                        <td class="${diffClass}">${diff}</td>
+                    </tr>
+                `;
+            }
+            tableHTML += `</tbody>`;
+            table.innerHTML = tableHTML;
+
+            const average = (stockPrices.reduce((a, b) => a + b, 0) / stockPrices.length).toFixed(2);
+            const max = Math.max(...stockPrices).toFixed(2);
+            const min = Math.min(...stockPrices).toFixed(2);
+
+            const statsDiv = document.getElementById('stockStats');
+            statsDiv.innerHTML = `
+                <p>Среднее значение: ${average}</p>
+                <p>Максимальное значение: ${max}</p>
+                <p>Минимальное значение: ${min}</p>
+            `;
+
+            button.style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <button onclick="showStockData()">Курс акций ФосАгро</button>
+    <table border="1" id="stockTable"></table>
+    <div id="stockStats"></div>
+</body>
+</html>
+    </main>
+
+    <footer>
+       &copy; Стабровская Лиза, ФБИ-33, 2 курс, 2025 
+    </footer>
+</body>
+</html>
