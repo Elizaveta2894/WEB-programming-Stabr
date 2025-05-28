@@ -30,12 +30,7 @@
             
             <hr>
 
-            <h2>Цветы</h2>
-            <ul class="list-group">
-                <li v-for="(flower, id) in flowers" class="list-group-item">
-                    {{flower}} <button @click="edit(id, flower)">?</button>
-                </li>
-            </ul>
+         
 
             <hr>
 
@@ -50,25 +45,19 @@
                 </thead>
                 <tr v-for="(flower, id) in flowers">
                     <td>
-                        {{flower}}
+                        <span v-if="flower===null">загружается...</span>
+                        <span v-else>{{flower}}</span>
                     </td>
                     <td>
-                        <button @click="edit(id, flower)" class="btn btn-primary"><i class="bi bi-pencil-fill"></i></button>
+                        <button @click="edit(id, flower)" class="btn btn-primary" v-if="flower!==null">
+                            <i class="bi bi-pencil-fill"></i>
+                        </button>
+                        <div class="spinner-border" role="status" v-if="flower===null"></div>
                     </td>
                 </tr>
             </table>
             <hr>
 
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h2 class="card-title">Цветы</h2>
-                    <ul class="list-group">
-                        <li v-for="(flower, id) in flowers" class="list-group-item">
-                             {{flower}} <button @click="edit(id, flower)">?</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
 
             <h2>Калькулятор</h2>
             <div class="row g-5">
@@ -120,9 +109,10 @@
                 },
                 edit(id,flower) {
                     let newName=prompt('Введите имя цветка:', flower);
-                    this.flower[id]='сохранение...';
+                    if (newName !== null)
+                    this.flowers[id]=null;
                     setTimeout(()=> {
-                        this.flower[id]=newName;
+                        this.flowers[id]=newName;
                     },3000);
                 },
                 sum(){
