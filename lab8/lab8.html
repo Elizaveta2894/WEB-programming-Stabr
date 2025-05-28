@@ -18,8 +18,8 @@
         <div id="app">
             <h1 :title="messageRus">{{message}}</h1>
             <p>Счётчик: {{counter}}</p>
-            <button @click="incCounter">++</button>
-            <button @click="decCounter">--</button>
+            <button @click="incCounter" v-if="counter < 10">++</button>
+            <button @click="decCounter" v-if="counter>0">--</button>
         </div>
     </main>
     <footer>
@@ -31,7 +31,7 @@
                 return {
                     message: 'Hello!',
                     messageRus: 'Привет!',
-                    counter: 1,
+                    counter: 0,
                 }
             },
             methods: {
