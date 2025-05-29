@@ -35,11 +35,15 @@
 
             <hr>
             <h2>Цветы</h2>
+            <button @click="addFlower" class="btn btn-success mb-3" title="Добавить новый цветок">
+            <i class="bi bi-plus-circle"></i> Добавить цветок
+            </button>
             <table class="table table-light">
                 <thead>
                     <tr>
                         <th>Название</th>
                         <th>Редактировать</th>
+                        <th>Удалить</th>
                     </tr>
                 </thead>
                 <tr v-for="(flower, id) in flowers">
@@ -52,6 +56,12 @@
                             <i class="bi bi-pencil-fill"></i>
                         </button>
                         <div class="spinner-border" role="status" v-if="flower===null"></div>
+                    </td>
+                    <td>
+                        <button @click="deleteFlower(id)"class="btn btn-danger" title="Удалить цветок" 
+                        :disabled="flower === null">
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
                     </td>
                 </tr>
             </table>
@@ -92,44 +102,59 @@
         &copy;Лиза Стабровская, ФБИ-33, 2 курс, 2025
     </footer>
     <script>
-        Vue.createApp({
-            data() {
-                return {
-                    message: 'Hello!',
-                    messageRus: 'Привет!',
-                    counter: 0,
-                    user: {
-                        name:'Вася',
-                        age:'18',
-                        tel:'222-33-44'
-                    },
-                    flowers:['роза','тюльпан','маргаритка', 'георгин', 'одуванчик'],
-                    a:1,
-                    b:10,
-                    result:'',
+    Vue.createApp({
+        data() {
+            return {
+                message: 'Hello!',
+                messageRus: 'Привет!',
+                counter: 0,
+                user: {
+                    name:'Вася',
+                    age:'18',
+                    tel:'222-33-44'
+                },
+                flowers:['роза','тюльпан','маргаритка', 'георгин', 'одуванчик'],
+                a:1,
+                b:10,
+                result:'',
+            }
+        },
+        methods: {
+            incCounter() {
+                this.counter++;
+            },
+            decCounter() {
+                this.counter--;
+            },
+            edit(id,flower) {
+                let newName=prompt('Введите имя цветка:', flower);
+                if (newName !== null)
+                this.flowers[id]=null;
+                setTimeout(()=> {
+                    this.flowers[id]=newName;
+                },3000);
+            },
+            deleteFlower(id) {
+                if (
+                    confirm(
+                        `Вы уверены, что хотите удалить цветок "${this.flowers[id]}"?`
+                    )
+                ) {
+                    this.flowers.splice(id, 1);
                 }
             },
-            methods: {
-                incCounter() {
-                    this.counter++;
-                },
-                decCounter() {
-                    this.counter--;
-                },
-                edit(id,flower) {
-                    let newName=prompt('Введите имя цветка:', flower);
-                    if (newName !== null)
-                    this.flowers[id]=null;
-                    setTimeout(()=> {
-                        this.flowers[id]=newName;
-                    },3000);
-                },
-                sum(){
-                    this.result=this.a + this.b;
-                },
+            addFlower() {
+                let newFlower = prompt('Введите название нового цветка:');
+                if (newFlower) {
+                    this.flowers.push(newFlower);
+                }
+            },
+            sum() {
+                this.result = this.a + this.b;
             }
-        }).mount('#app');
-    </script>
-    
+        }
+    }).mount('#app');
+</script>
+
 </body>
 </html>
